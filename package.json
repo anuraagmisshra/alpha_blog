@@ -12,7 +12,7 @@
     "bootstrap": "^5.2.3",
     "jquery": "^3.6.1",
     "popper.js": "^1.16.1",
-    "trix": "^2.1.12",
+    "trix": "^2.1.15",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
