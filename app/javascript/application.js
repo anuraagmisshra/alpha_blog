@@ -1,8 +1,8 @@
 // Entry point for the build script in your package.json
-import Rails from '@rails/ujs'
-Rails.starts()
-
-require("@rails/ujs").start()
+// import Rails from '@rails/ujs'
+// Rails.starts()
+//
+// require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 

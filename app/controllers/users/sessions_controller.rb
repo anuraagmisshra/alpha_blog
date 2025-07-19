@@ -4,8 +4,8 @@ module Users
   class SessionsController < Devise::SessionsController
     include AuthenticateWithOtpTwoFactor
 
-    prepend_before_action :authenticate_with_otp_two_factor,
-                          if: -> { action_name == 'create' && otp_two_factor_enabled? }
+    # prepend_before_action :authenticate_with_otp_two_factor,
+    #                       if: -> { action_name == 'create' && otp_two_factor_enabled? }
 
     protect_from_forgery with: :exception, prepend: true, except: :destroy
     prepend_before_action :check_captcha, only: [:create] # Change this to be any actions you want to protect.
