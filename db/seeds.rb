@@ -7,3 +7,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+return unless Rails.env.development?
+
+User.create(username: 'test-dev', password: 'Test@1234', email: 'test@dev.com', admin: true, confirmed_at: Time.now)
+500.times do
+  Article.create(title: Faker::Book.title, description: Faker::Lorem.paragraph, user_id: User.first.id)
+end
+
+50.times do
+  Category.create(name: Faker::ProgrammingLanguage.name)
+end

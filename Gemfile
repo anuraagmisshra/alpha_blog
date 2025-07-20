@@ -30,12 +30,6 @@ gem 'bootstrap', '~> 5.2.2'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'sqlite3'
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-end
-
 gem 'dotenv-rails'
 
 group :development do
@@ -46,6 +40,15 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen'
   gem 'rubocop-rails'
+  gem 'rack-mini-profiler'
+  gem 'flamegraph'
+  gem 'stackprof'
+  gem 'memory_profiler'
+  gem 'derailed'
+  gem 'faker'
+  gem 'bullet'
+  gem 'debug'
+  gem 'sqlite3'
 end
 
 group :production do
@@ -70,11 +73,17 @@ gem 'devise'
 
 gem 'devise-bootstrap-views', '~> 1.0'
 
+# for 2FA
 gem 'devise-two-factor'
 
+# for qr code generation in 2FA
 gem 'rqrcode'
 
+# for form creation
 gem 'simple_form'
 
+# for js bundling
 gem 'jsbundling-rails'
+
+# for image processing
 gem "image_processing", "~> 1.13"
