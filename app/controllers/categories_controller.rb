@@ -35,7 +35,10 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @articles = @category.articles.paginate(page: params[:page], per_page: 5)
+    @articles = @category.articles
+                         .includes(:user, :categories, :rich_text_description)
+                         .with_all_rich_text
+                         .paginate(page: params[:page], per_page: 5)
   end
 
   def destroy
