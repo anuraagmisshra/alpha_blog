@@ -1,44 +1,46 @@
 <h1 class="text-center mt-4">ALPHA BLOGGERS</h1>
 
 <div class="flickr_pagination">
-  <%= will_paginate @users, container: false %>
+    <%= will_paginate @users, container: false %>
 </div>
 
 <div class="container">
-<% @users.each do |user| %>
-  <div class="row justify-content-md-center">
-    <div class="col-8 mt-4">
-      <div class="card text-center shadow mb-5 bg-white rounded">
-        <div class="card-header font-italic">
-          <%= link_to user.username, user %>
+    <% @users.each do |user| %>
+    <div class="row justify-content-md-center">
+        <div class="col-12 col-md-10 col-lg-8 mt-4">
+            <div class="card text-center shadow mb-5 bg-white rounded">
+                <div class="card-header font-italic">
+                    <%= link_to user.username, user %>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= link_to gravatar_for(user, size: 150), user  %>
+                    </h5>
+                    <p class="card-text">
+                        <%= pluralize(user.articles.count, "article") %>
+                    </p>
+                    <div class="d-flex flex-column flex-sm-row justify-content-center gap-2">
+                        <%= link_to "View profile", user, class: "btn btn-outline-success" %>
+                        <% if current_user %>
+                        <% if user == current_user %>
+                        <%= link_to "Edit profile", edit_user_path(user), class: "btn btn-outline-info" %>
+                        <% elsif current_user.admin? %>
+                        <%= link_to "Delete user", user_path(user), class: "btn btn-outline-danger", method: :delete,
+                data: {confirm: "Are you sure you want to delete the user account and all associated articles?"} %>
+                        <% end %>
+                        <%end%>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    <small>Created <%= time_ago_in_words(user.created_at) %> ago,
+                        last updated at <%= time_ago_in_words(user.updated_at) %> ago</small>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-          <h5 class="card-title">
-            <%= link_to gravatar_for(user, size: 150), user  %>
-          </h5>
-          <p class="card-text">
-            <%= pluralize(user.articles.count, "article") %>
-          </p>
-          <%= link_to "View profile", user, class: "btn btn-outline-success" %>
-          <% if current_user %>
-            <% if user == current_user %>
-              <%= link_to "Edit profile", edit_user_path(user), class: "btn btn-outline-info" %>
-            <% elsif current_user.admin? %>
-              <%= link_to "Delete user", user_path(user), class: "btn btn-outline-danger", method: :delete,
-              data: {confirm: "Are you sure you want to delete the user account and all associated articles?"} %>
-            <% end %>
-          <%end%>
-        </div>
-        <div class="card-footer text-muted">
-          <small>Created <%= time_ago_in_words(user.created_at) %> ago,
-          last updated at <%= time_ago_in_words(user.updated_at) %> ago</small>
-        </div>
-      </div>
     </div>
-  </div>
-<% end %>
+    <% end %>
 </div>
 
 <div class="flickr_pagination mb-4">
-  <%= will_paginate @users, :container => false %>
+    <%= will_paginate @users, :container => false %>
 </div>
