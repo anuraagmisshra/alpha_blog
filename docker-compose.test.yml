@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    environment:
+      - RAILS_ENV=test
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/alpha_blog_test
+      - NODE_ENV=test
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: |
+      bash -c "
+        bundle install &&
+        yarn install &&
+        rails db:create db:migrate &&
+        bundle exec rspec &&
+        bundle exec brakeman --quiet &&
+        bundle exec bundler-audit check
+      "
+
+  postgres:
+    image: postgres:15
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=alpha_blog_test
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

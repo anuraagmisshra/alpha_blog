@@ -34,6 +34,9 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'sqlite3'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 gem 'dotenv-rails'
@@ -46,6 +49,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen'
   gem 'rubocop-rails'
+  gem 'brakeman'
+  gem 'bundler-audit'
 end
 
 group :production do
@@ -58,6 +63,8 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'shoulda-matchers'
+  gem 'database_cleaner-active_record'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
