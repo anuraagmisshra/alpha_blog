@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TwoFactorSettingsController < ApplicationController
   before_action :authenticate_user!
 
@@ -8,6 +10,21 @@ class TwoFactorSettingsController < ApplicationController
     end
 
     current_user.generate_two_factor_secret_if_missing!
+  end
+
+  def edit
+    unless current_user.otp_required_for_login
+      flash[:alert] = 'Please enable two factor authentication first.'
+      return redirect_to new_two_factor_settings_path
+    end
+
+    if current_user.two_factor_backup_codes_generated?
+      flash[:alert] = 'You have already seen your backup codes.'
+      return redirect_to edit_user_registration_path
+    end
+
+    @backup_codes = current_user.generate_otp_backup_codes!
+    current_user.save!
   end
 
   def create
@@ -25,21 +42,6 @@ class TwoFactorSettingsController < ApplicationController
       flash.now[:alert] = 'Incorrect Code'
       render :new
     end
-  end
-
-  def edit
-    unless current_user.otp_required_for_login
-      flash[:alert] = 'Please enable two factor authentication first.'
-      return redirect_to new_two_factor_settings_path
-    end
-
-    if current_user.two_factor_backup_codes_generated?
-      flash[:alert] = 'You have already seen your backup codes.'
-      return redirect_to edit_user_registration_path
-    end
-
-    @backup_codes = current_user.generate_otp_backup_codes!
-    current_user.save!
   end
 
   def destroy
@@ -63,10 +65,9 @@ class TwoFactorSettingsController < ApplicationController
       current_user.enable_two_factor!
 
       flash[:notice] = 'Successfully enabled two factor authentication, please make note of your backup codes.'
-      redirect_to edit_two_factor_settings_path
     else
       flash.now[:alert] = 'Incorrect Code'
-      redirect_to edit_two_factor_settings_path
     end
+    redirect_to edit_two_factor_settings_path
   end
 end

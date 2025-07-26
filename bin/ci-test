@@ -19,6 +19,10 @@ yarn install || exit 1
 echo "🎨 Testing asset compilation..."
 RAILS_ENV=test bundle exec rails assets:precompile || exit 1
 
+# Test 5: Rubocop tests
+echo "🧪 Running Rubocop..."
+bundle exec rubocop || exit 1
+
 # Test 5: RSpec tests
 echo "🧪 Running RSpec tests..."
 bundle exec rspec || exit 1

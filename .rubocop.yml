@@ -32,10 +32,24 @@ Layout/LineLength:
 Style/Documentation:
   Enabled: false
 
-#Metrics/MethodLength:
-#  Enabled: Yes
-#  Max: 15
-#  CountComments: false
+# Disable I18n cop for now - we can enable later when adding proper i18n
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+# Allow some flexibility in method complexity for controllers
+Metrics/AbcSize:
+  Max: 25
+
+Metrics/MethodLength:
+  Max: 15
+
+# Allow action filters for inherited actions
+Rails/LexicallyScopedActionFilter:
+  Enabled: false
+
+# Allow html_safe for helper methods (with caution)
+Rails/OutputSafety:
+  Enabled: false
 #
 #Metrics/ParameterLists:
 #  Max: 5

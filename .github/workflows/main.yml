@@ -38,8 +38,10 @@ jobs:
           ruby-version: 3.3.4
           bundler-cache: true
 
-      - name: Handle yanked gems
+      - name: Handle yanked gems and clear cache
         run: |
+          # Clear any bundler cache that might reference old gems
+          bundle cache clear --all || true
           # If bundle install fails due to yanked gems, try to update them
           if ! bundle check; then
             echo "Bundle check failed, attempting to resolve yanked gems..."
@@ -66,11 +68,16 @@ jobs:
 
       - name: Run RuboCop
         run: |
+          # Ensure clean bundler state
+          bundle install
           # Run RuboCop only if properly configured
-          if bundle exec rubocop --version; then
+          if bundle exec rubocop --version > /dev/null 2>&1; then
+            echo "Running RuboCop..."
             bundle exec rubocop
           else
             echo "RuboCop not properly configured, skipping..."
+            echo "Available gems:"
+            bundle list | grep rubocop || echo "No rubocop gems found"
           fi
 
       - name: Run RSpec tests
