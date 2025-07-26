@@ -8,8 +8,8 @@ import * as bootstrap from "bootstrap"
 // Make Bootstrap available globally
 window.bootstrap = bootstrap
 
-// Turbolinks
-import "turbolinks"
+// Turbo for fast page navigation
+import "@hotwired/turbo-rails"
 
 // Active Storage  
 import "@rails/activestorage"
@@ -32,8 +32,8 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeNavbar();
 })
 
-// Re-initialize components after Turbolinks navigation
-document.addEventListener('turbolinks:load', function () {
+// Re-initialize components after Turbo navigation
+document.addEventListener('turbo:load', function () {
     // Clean up previous navbar instance
     cleanupNavbar();
 
@@ -52,5 +52,6 @@ document.addEventListener('turbolinks:load', function () {
     // Reinitialize iOS-compatible navbar (handles dropdowns internally)
     initializeNavbar();
 })
+
 import "trix"
 import "@rails/actiontext"

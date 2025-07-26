@@ -1,36 +1,36 @@
-<h2 class = 'text-center mt-4'>Log in</h2>
+<h2 class='text-center mt-4'>Log in</h2>
 
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-10">
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "shadow p-3 mb-3 bg-dark rounded"}) do |f| %>
-        <div class="form-group row">
-          <%= f.label :email, class: "col-2 col-form-label text-light" %>
-          <div class="col-8">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control shadow rounded" %>
-          </div>
-        </div> <br />
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "shadow p-3 mb-3 bg-dark rounded"}) do |f| %>
+            <div class="form-group row">
+                <%= f.label :email, class: "col-2 col-form-label text-light" %>
+                <div class="col-8">
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control shadow rounded" %>
+                </div>
+            </div> <br />
 
-        <div class="form-group row">
-          <%= f.label :password, class: "col-2 col-form-label text-light" %>
-          <div class="col-8">
-            <%= f.password_field :password, autocomplete: "current-password", class: "form-control shadow rounded" %>
-          </div>
+            <div class="form-group row">
+                <%= f.label :password, class: "col-2 col-form-label text-light" %>
+                <div class="col-8">
+                    <%= f.password_field :password, autocomplete: "current-password", class: "form-control shadow rounded" %>
+                </div>
+            </div>
+
+            <% if devise_mapping.rememberable? %>
+            <div class="form-group field justify-content-center text-light text-center">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+                <%= recaptcha_tags(site_key: ENV['GOOGLE_SITE_KEY'], theme: 'dark', style: "text-align: -webkit-center;") %>
+            </div>
+            <% end %>
+
+            <div class="form-group row col-8">
+                <%= f.submit "Log in", class: "btn btn-outline-light btn-lg" %>
+            </div>
+            <%= render "devise/shared/links" %>
+            <% end %>
         </div>
-
-        <% if devise_mapping.rememberable? %>
-          <div class="form-group field justify-content-center text-light text-center">
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
-            <%= recaptcha_tags(site_key: ENV['GOOGLE_SITE_KEY'], theme: 'dark', style: "text-align: -webkit-center;") %>
-          </div>
-        <% end %>
-
-        <div class="form-group row col-8">
-          <%= f.submit "Log in", class: "btn btn-outline-light btn-lg" %>
-        </div>
-        <%= render "devise/shared/links" %>
-      <% end %>
     </div>
-  </div>
 </div>
