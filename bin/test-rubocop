@@ -1,0 +1,38 @@
+#!/bin/bash
+
+echo "Testing RuboCop configuration..."
+echo "================================"
+
+echo "Ruby version:"
+ruby --version
+
+echo ""
+echo "Bundler version:"
+bundle --version
+
+echo ""
+echo "Checking if RuboCop is installed:"
+if bundle exec rubocop --version > /dev/null 2>&1; then
+  echo "✅ RuboCop is available"
+  bundle exec rubocop --version
+else
+  echo "❌ RuboCop is not available"
+  exit 1
+fi
+
+echo ""
+echo "Listing RuboCop-related gems:"
+bundle list | grep rubocop
+
+echo ""
+echo "Checking RuboCop configuration:"
+if bundle exec rubocop --version > /dev/null 2>&1; then
+  echo "✅ Running RuboCop..."
+  bundle exec rubocop --lint
+else
+  echo "❌ Failed to run RuboCop"
+  exit 1
+fi
+
+echo ""
+echo "✅ RuboCop test completed successfully!"

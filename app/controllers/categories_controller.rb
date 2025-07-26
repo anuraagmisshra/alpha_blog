@@ -8,9 +8,15 @@ class CategoriesController < ApplicationController
     @categories = Category.paginate(page: params[:page], per_page: 5)
   end
 
+  def show
+    @articles = @category.articles.paginate(page: params[:page], per_page: 5)
+  end
+
   def new
     @category = Category.new
   end
+
+  def edit; end
 
   def create
     @category = Category.new(category_params)
@@ -22,20 +28,14 @@ class CategoriesController < ApplicationController
     end
   end
 
-  def edit; end
-
   def update
     if @category.update(category_params)
       flash[:success] = 'Category updated successfully'
       redirect_to @category
     else
       flash.now[:alert] = 'Something went wrong please try again later'
-      render 'new'
+      render 'edit'
     end
-  end
-
-  def show
-    @articles = @category.articles.paginate(page: params[:page], per_page: 5)
   end
 
   def destroy

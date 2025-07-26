@@ -1,28 +1,31 @@
 <div class="container">
-<% @categories.each do |category| %>
-  <div class="row justify-content-md-center">
-    <div class="col-6 mt-4">
-      <div class="card text-center shadow mb-5 bg-white rounded">
-        <div class="card-body">
-          <h5 class="card-title">
-            <%= link_to category.name, category_path(category), class: "text-success" %>
-            <p class="card-text mt-3">
-              <%= pluralize(category.articles.count, "article") %>
-            </p>
-          </h5>
+    <% @categories.each do |category| %>
+    <div class="row justify-content-md-center">
+        <div class="col-12 col-md-8 col-lg-6 mt-4">
+            <div class="card text-center shadow mb-5 bg-white rounded">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= link_to category.name, category_path(category), class: "text-success" %>
+                        <p class="card-text mt-3">
+                            <%= pluralize(category.articles.count, "article") %>
+                        </p>
+                    </h5>
+                </div>
+                <% if current_user && current_user.admin? %>
+                <div class="card-body pt-0">
+                    <div class="d-flex flex-column flex-sm-row justify-content-center gap-2">
+                        <%= link_to "Edit category", edit_category_path(category), class: "btn btn-outline-info" %>
+                        <%= link_to "Delete category", category_path(category), class: "btn btn-outline-danger", 
+                              data: { "turbo-method": "delete", "turbo-confirm": "Are you sure?" } %>
+                    </div>
+                </div>
+                <%end%>
+                <div class="card-footer text-muted">
+                    <small>Created <%= time_ago_in_words(category.created_at) %> ago,
+                        Updated <%= time_ago_in_words(category.updated_at) %> ago</small>
+                </div>
+            </div>
         </div>
-        <% if current_user && current_user.admin? %>
-          <p class="card-text">
-            <%= link_to "Edit category", edit_category_path(category), class: "btn btn-outline-info" %>
-            <%= link_to "Delete category", category_path(category), class: "btn btn-outline-danger", method: :delete %>
-          </p>
-        <%end%>
-        <div class="card-footer text-muted">
-          <small>Created <%= time_ago_in_words(category.created_at) %> ago,
-          Updated <%= time_ago_in_words(category.updated_at) %> ago</small>
-        </div>
-      </div>
     </div>
-  </div>
-<% end %>
+    <% end %>
 </div>

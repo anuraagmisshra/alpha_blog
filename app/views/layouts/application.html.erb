@@ -1,21 +1,30 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+
+<head>
     <title>AlphaBlog</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="format-detection" content="telephone=no">
     <%= favicon_link_tag %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
-  </head>
+</head>
 
-  <body class="d-flex flex-column">
+<body class="d-flex flex-column min-vh-100">
     <%= render 'layouts/navbar'%>
     <div id="page-content">
-      <%= render 'layouts/flash_messages'%>
-      <%= yield %>
+        <%= render 'layouts/flash_messages'%>
+        <%= yield %>
     </div>
     <%= render 'layouts/footer'%>
-  </body>
+</body>
+
 </html>

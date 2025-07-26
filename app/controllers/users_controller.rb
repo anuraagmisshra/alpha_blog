@@ -7,10 +7,6 @@ class UsersController < ApplicationController
   include Recaptcha::Adapters::ViewMethods
   include Recaptcha::Adapters::ControllerMethods
 
-  def new
-    @user = User.new
-  end
-
   def index
     @users = User.paginate(page: params[:page], per_page: 5)
   end
@@ -18,6 +14,12 @@ class UsersController < ApplicationController
   def show
     @articles = @user.articles.paginate(page: params[:page], per_page: 5)
   end
+
+  def new
+    @user = User.new
+  end
+
+  def edit; end
 
   def create
     @user = User.new(user_params)
@@ -29,8 +31,6 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
-
-  def edit; end
 
   def update
     if @user.update(user_params)

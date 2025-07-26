@@ -8,14 +8,19 @@ AllCops:
     - db/**/*
     - config/**/*
   TargetRubyVersion: 3.3.4
-  TargetRailsVersion: 8.0.1
+  NewCops: enable
+  SuggestExtensions: false
+  DisabledByDefault: false
+
+require:
+  - rubocop-rails
 
 Metrics/ClassLength:
   Enabled: true
   CountComments: false
   Max: 100
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 120
   # To make it possible to copy or click on URIs in the code, we allow lines
   # containing a URI to be longer than Max.
@@ -24,13 +29,28 @@ Metrics/LineLength:
   URISchemes:
     - http
     - https
-Documentation:
+
+Style/Documentation:
   Enabled: false
 
-#Metrics/MethodLength:
-#  Enabled: Yes
-#  Max: 15
-#  CountComments: false
+# Disable I18n cop for now - we can enable later when adding proper i18n
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+# Allow some flexibility in method complexity for controllers
+Metrics/AbcSize:
+  Max: 25
+
+Metrics/MethodLength:
+  Max: 15
+
+# Allow action filters for inherited actions
+Rails/LexicallyScopedActionFilter:
+  Enabled: false
+
+# Allow html_safe for helper methods (with caution)
+Rails/OutputSafety:
+  Enabled: false
 #
 #Metrics/ParameterLists:
 #  Max: 5

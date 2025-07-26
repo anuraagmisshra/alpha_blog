@@ -6,7 +6,7 @@ class User < ApplicationRecord
          :confirmable, :lockable, :timeoutable, :trackable,
          :two_factor_authenticatable, :two_factor_backupable,
          otp_backup_code_length: 10, otp_number_of_backup_codes: 10,
-         otp_secret_encryption_key: ENV['OTP_SECRET_KEY']
+         otp_secret_encryption_key: ENV.fetch('OTP_SECRET_KEY', nil)
 
   has_many :articles, dependent: :destroy
   validates :username, presence: true, length: { minimum: 3, maximum: 15 }
@@ -39,7 +39,7 @@ class User < ApplicationRecord
 
   # URI for OTP two-factor QR code
   def two_factor_qr_code_uri
-    issuer = ENV['OTP_2FA_ISSUER_NAME']
+    issuer = ENV.fetch('OTP_2FA_ISSUER_NAME', nil)
     label = [issuer, email].join(':')
 
     otp_provisioning_uri(label, issuer: issuer)
@@ -48,5 +48,10 @@ class User < ApplicationRecord
   # Determine if backup codes have been generated
   def two_factor_backup_codes_generated?
     otp_backup_codes.present?
+  end
+
+  # Fix for devise-two-factor inspect issue
+  def inspect
+    "#<#{self.class}:0x#{object_id.to_s(16)} id: #{id}, username: \"#{username}\", email: \"#{email}\">"
   end
 end

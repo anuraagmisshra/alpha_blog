@@ -9,17 +9,18 @@ module Users
 
     protect_from_forgery with: :exception, prepend: true, except: :destroy
     prepend_before_action :check_captcha, only: [:create] # Change this to be any actions you want to protect.
+    before_action :configure_permitted_parameters
 
     private
 
     def check_captcha
       return if verify_recaptcha # verify_recaptcha(action: 'login') for v3
 
-      self.resource = resource_class.new sign_in_params
+      self.resource = resource_class.new(email: sign_in_params[:email])
 
       respond_with_navigational(resource) do
         flash.discard(:recaptcha_error) # We need to discard flash to avoid showing it on the next page reload
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
 
