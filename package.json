@@ -23,6 +23,6 @@
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets"
   },
   "engines": {
-    "node": ">=23.4.0"
+    "node": ">=22.0.0"
   }
 }
