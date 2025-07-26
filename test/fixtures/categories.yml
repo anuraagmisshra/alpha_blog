@@ -1,9 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# one:
-#   name: MyString
-#   timspans: MyString
-#
-# two:
-#   name: MyString
-#   timspans: MyString
+one:
+  name: "Technology"
+
+two:
+  name: "Science"

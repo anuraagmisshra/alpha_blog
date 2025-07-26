@@ -34,7 +34,7 @@ class CategoriesController < ApplicationController
       redirect_to @category
     else
       flash.now[:alert] = 'Something went wrong please try again later'
-      render 'new'
+      render 'edit'
     end
   end
 

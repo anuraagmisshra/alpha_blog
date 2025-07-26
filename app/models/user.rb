@@ -49,4 +49,9 @@ class User < ApplicationRecord
   def two_factor_backup_codes_generated?
     otp_backup_codes.present?
   end
+
+  # Fix for devise-two-factor inspect issue
+  def inspect
+    "#<#{self.class}:0x#{object_id.to_s(16)} id: #{id}, username: \"#{username}\", email: \"#{email}\">"
+  end
 end
