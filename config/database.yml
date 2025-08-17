@@ -21,13 +21,11 @@ test:
   database: db/test.sqlite1
 
 production:
-  <<: *default
-  database: db/development.sqlite3
 #  <<: *default
-#  adapter: postgresql
-#  database: <%#= ENV['DATABASE_NAME'] %>
-#  username: <%#= ENV['DATABASE_USER'] %>
-#  password: <%#= ENV['DATABASE_PASSWORD'] %>
-#  host: <%#= ENV['DATABASE_HOST'] %>
-#  port: 25060
-#  sslmode: require
+#  database: db/development.sqlite3
+  adapter: postgresql
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  host: <%= ENV['DATABASE_HOST'] %>
+  port: 25060

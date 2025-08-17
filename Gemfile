@@ -11,8 +11,6 @@ gem 'puma'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 
- gem 'sqlite3'
-
 # Turbo makes navigating your web application faster. Read more: https://turbo.hotwired.dev
 gem "turbo-rails"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -36,6 +34,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'sqlite3'
 end
 
 gem 'dotenv-rails'
@@ -61,6 +60,10 @@ group :test do
   gem 'webdrivers'
   gem 'shoulda-matchers'
   gem 'database_cleaner-active_record'
+end
+
+group :production do
+  gem 'pg'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
