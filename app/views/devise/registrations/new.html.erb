@@ -1,50 +1,52 @@
-<h2 class = 'text-center mt-4'>Sign Up</h2>
+<h2 class='text-center mt-4'>Sign Up</h2>
 
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-10">
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "shadow p-3 mb-3 bg-dark rounded"}) do |f| %>
-        <%= bootstrap_devise_error_messages! %>
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), 
+                   html: { class: "shadow p-3 mb-3 bg-dark rounded", 
+                           data: { turbo: true } }) do |f| %>
+            <%= bootstrap_devise_error_messages! %>
 
-        <div class="form-group row">
-          <%= f.label :email, class: "col-2 col-form-label text-light" %>
-          <div class="col-8">
-            <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control shadow rounded' %>
-          </div>
-        </div><br />
+            <div class="form-group row">
+                <%= f.label :email, class: "col-2 col-form-label text-light" %>
+                <div class="col-8">
+                    <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control shadow rounded' %>
+                </div>
+            </div><br />
 
-        <div class="form-group row">
-          <%= f.label :username, class: "col-2 col-form-label text-light" %>
-          <div class="col-8">
-            <%= f.text_field :username, autofocus: true, autocomplete: 'username', class: 'form-control shadow rounded' %>
-          </div>
-        </div><br />
+            <div class="form-group row">
+                <%= f.label :username, class: "col-2 col-form-label text-light" %>
+                <div class="col-8">
+                    <%= f.text_field :username, autofocus: true, autocomplete: 'username', class: 'form-control shadow rounded' %>
+                </div>
+            </div><br />
 
-        <div class="form-group row">
-          <%= f.label :password, class: "col-2 col-form-label text-light" %>
-          <div class="col-8">
-            <%= f.password_field :password, autocomplete: 'current-password', class: 'form-control shadow rounded' %>
-          </div>
+            <div class="form-group row">
+                <%= f.label :password, class: "col-2 col-form-label text-light" %>
+                <div class="col-8">
+                    <%= f.password_field :password, autocomplete: 'current-password', class: 'form-control shadow rounded' %>
+                </div>
 
-          <% if @minimum_password_length %>
-            <small class="form-text text-muted"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></small>
-          <% end %>
+                <% if @minimum_password_length %>
+                <small class="form-text text-muted"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></small>
+                <% end %>
+            </div>
+
+            <div class="form-group row">
+                <%= f.label :password_confirmation, class: "col-2 col-form-label text-light" %>
+                <div class="col-8">
+                    <%= f.password_field :password_confirmation, autocomplete: 'current-password', class: 'form-control shadow rounded' %>
+                </div>
+            </div>
+
+            <%= recaptcha_tags(site_key: ENV['GOOGLE_SITE_KEY'], theme: 'dark', style: "text-align: -webkit-center;") %>
+
+            <div class="form-group row col-8 justify-content-end">
+                <%= f.submit t('.sign_up'), class: "btn btn-outline-light btn-lg" %>
+            </div>
+            <%= render 'devise/shared/links' %>
+            <% end %>
         </div>
-
-        <div class="form-group row">
-          <%= f.label :password_confirmation, class: "col-2 col-form-label text-light" %>
-          <div class="col-8">
-            <%= f.password_field :password_confirmation, autocomplete: 'current-password', class: 'form-control shadow rounded' %>
-          </div>
-        </div>
-
-        <%= recaptcha_tags(site_key: ENV['GOOGLE_SITE_KEY'], theme: 'dark', style: "text-align: -webkit-center;") %>
-
-        <div class="form-group row col-8 justify-content-end">
-          <%= f.submit t('.sign_up'), class: "btn btn-outline-light btn-lg" %>
-        </div>
-        <%= render 'devise/shared/links' %>
-      <% end %>
     </div>
-  </div>
 </div>

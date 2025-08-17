@@ -4,15 +4,19 @@ module Users
   class RegistrationsController < Devise::RegistrationsController
     before_action :configure_permitted_parameters, only: [:create]
     before_action :configure_account_update_params, only: [:update]
-    def create
-      if verify_recaptcha
-        super
-      else
-        build_resource(sign_up_params)
-        clean_up_passwords(resource)
-        flash.now[:alert] = 'There was an error with the recaptcha code below. Please re-enter the code.'
-        flash.delete :recaptcha_error
-        render :new
+    prepend_before_action :check_captcha, only: [:create]
+
+    private
+
+    def check_captcha
+      return if verify_recaptcha
+
+      build_resource(sign_up_params)
+      resource.valid? # Check validity without saving
+
+      respond_with_navigational(resource) do
+        flash.now[:alert] = 'Please complete the reCAPTCHA verification.'
+        render :new, status: :unprocessable_entity
       end
     end
 

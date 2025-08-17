@@ -33,7 +33,7 @@ Devise.setup do |config|
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 
-  ActionMailer::Base.default_url_options[:host] = 'anuraagmisshra.com'
+  ActionMailer::Base.default_url_options[:host] = ENV['APP_HOST'] || 'alpha-blog-wx1g.onrender.com'
 
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'

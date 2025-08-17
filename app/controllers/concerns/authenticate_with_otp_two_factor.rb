@@ -42,18 +42,23 @@ module AuthenticateWithOtpTwoFactor
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :remember_me, :otp_attempt)
+    params.expect(user: %i[email password remember_me otp_attempt])
+  rescue ActionController::ParameterMissing
+    ActionController::Parameters.new
   end
 
   def find_user
     if session[:otp_user_id]
       User.find(session[:otp_user_id])
-    elsif user_params[:email]
+    elsif user_params[:email].present?
       User.find_by(email: user_params[:email])
     end
+  rescue ActionController::ParameterMissing
+    nil
   end
 
   def otp_two_factor_enabled?
-    find_user&.otp_required_for_login
+    # find_user&.otp_required_for_login
+    false
   end
 end

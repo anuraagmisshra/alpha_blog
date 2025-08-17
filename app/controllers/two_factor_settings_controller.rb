@@ -57,7 +57,7 @@ class TwoFactorSettingsController < ApplicationController
   private
 
   def enable_2fa_params
-    params.require(:two_fa).permit(:code, :password)
+    params.expect(two_fa: %i[code password])
   end
 
   def enable_two_factor_auth

@@ -55,7 +55,7 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    params.require(:category).permit(:name)
+    params.expect(category: [:name])
   end
 
   def should_admin

@@ -2,24 +2,27 @@
 
 module Users
   class SessionsController < Devise::SessionsController
-    include AuthenticateWithOtpTwoFactor
+    # include AuthenticateWithOtpTwoFactor
 
     # prepend_before_action :authenticate_with_otp_two_factor,
-    #                       if: -> { action_name == 'create' && otp_two_factor_enabled? }
+    #                          if: -> { action_name == 'create' && otp_two_factor_enabled? }
 
     protect_from_forgery with: :exception, prepend: true, except: :destroy
-    prepend_before_action :check_captcha, only: [:create] # Change this to be any actions you want to protect.
+    prepend_before_action :check_captcha, only: [:create]
     before_action :configure_permitted_parameters
 
     private
 
     def check_captcha
-      return if verify_recaptcha # verify_recaptcha(action: 'login') for v3
+      Rails.logger.info '=== CAPTCHA CHECK ==='
+      return if verify_recaptcha
 
-      self.resource = resource_class.new(email: sign_in_params[:email])
+      Rails.logger.info 'Captcha failed, rendering form with error'
+      self.resource = resource_class.new
+      resource.email = params[:user][:email] if params[:user] && params[:user][:email]
 
       respond_with_navigational(resource) do
-        flash.discard(:recaptcha_error) # We need to discard flash to avoid showing it on the next page reload
+        flash.now[:alert] = 'Please complete the reCAPTCHA verification.'
         render :new, status: :unprocessable_entity
       end
     end
