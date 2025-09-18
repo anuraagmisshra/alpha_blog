@@ -1,15 +1,17 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.3.4'
+ruby '3.4.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 8.0'
+gem 'rails', '8.1.0.beta1'
+
 # Use sqlite3 as the database for Active Record
 # Use Puma as the app server
 gem 'puma'
 # Use SCSS for stylesheets
-gem 'sass-rails', '>= 6'
+gem 'bootstrap', '~> 5.3.5'
+gem 'dartsass-rails'
 
 # Turbo makes navigating your web application faster. Read more: https://turbo.hotwired.dev
 gem "turbo-rails"
@@ -22,7 +24,6 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'will_paginate', '~> 4.0'
 
 gem "sprockets-rails"
-gem 'bootstrap', '~> 5.2.2'
 
 
 # Reduces boot times through caching; required in config/boot.rb
