@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+# Model Context Protocol
+post "/mcp", to: "mcp#handle"
+get  "/mcp", to: "mcp#handle"
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
