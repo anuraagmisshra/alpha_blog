@@ -61,3 +61,5 @@ yarn-debug.log*
 /config/credentials/development.key
 
 devlopment.*
+
+test.sqalite3
