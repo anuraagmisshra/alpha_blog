@@ -7,12 +7,12 @@ AllCops:
     - bin/*
     - db/**/*
     - config/**/*
-  TargetRubyVersion: 3.3.4
+  TargetRubyVersion: 3.5
   NewCops: enable
   SuggestExtensions: false
   DisabledByDefault: false
 
-require:
+plugins:
   - rubocop-rails
 
 Metrics/ClassLength:
