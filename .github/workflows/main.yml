@@ -35,7 +35,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3.4
+          ruby-version: 3.5.0preview1
           bundler-cache: false  # Disable cache to avoid stale gems
 
       - name: Install gems fresh
@@ -124,7 +124,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3.4
+          ruby-version: 3.5.0preview1
           bundler-cache: true
 
       - name: Run Brakeman security scan
@@ -148,7 +148,7 @@ jobs:
         run: echo "Add your deployment steps here"
         # Example for Heroku:
         # - name: Deploy to Heroku
-        #   uses: akhileshns/heroku-deploy@v3.12.12
+        #   uses: anuraagmisshra/heroku-deploy@v3.12.12
         #   with:
         #     heroku_api_key: ${{secrets.HEROKU_API_KEY}}
         #     heroku_app_name: "your-app-name"
