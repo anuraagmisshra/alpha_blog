@@ -79,3 +79,5 @@ gem 'rqrcode'
 gem 'simple_form'
 gem 'jsbundling-rails'
 gem "image_processing", "~> 1.13"
+
+gem "mcp", "~> 0.3.0"
