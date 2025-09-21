@@ -62,4 +62,4 @@ yarn-debug.log*
 
 devlopment.*
 
-test.sqalite3
+/db/test.*

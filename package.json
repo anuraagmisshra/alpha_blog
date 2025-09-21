@@ -11,6 +11,7 @@
     "@rails/actiontext": "^8.0.100",
     "@rails/activestorage": "^8.0.201",
     "bootstrap": "^5.2.3",
+    "gh-signoff": "basecamp/gh-signoff",
     "jquery": "^3.6.1",
     "popper.js": "^1.16.1",
     "trix": "^2.1.12"

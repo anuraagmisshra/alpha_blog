@@ -1486,6 +1486,10 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==
 
+gh-signoff@basecamp/gh-signoff:
+  version "0.0.0"
+  resolved "https://codeload.github.com/basecamp/gh-signoff/tar.gz/24f274070c9dfbb3916347dbf6f9d38d4fb64eca"
+
 jquery@^3.6.1:
   version "3.6.1"
   resolved "https://registry.npmjs.org/jquery/-/jquery-3.6.1.tgz"
