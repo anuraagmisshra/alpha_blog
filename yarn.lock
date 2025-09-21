@@ -406,6 +406,10 @@ esbuild@^0.24.2:
     "@esbuild/win32-ia32" "0.24.2"
     "@esbuild/win32-x64" "0.24.2"
 
+gh-signoff@basecamp/gh-signoff:
+  version "0.0.0"
+  resolved "https://codeload.github.com/basecamp/gh-signoff/tar.gz/24f274070c9dfbb3916347dbf6f9d38d4fb64eca"
+
 jquery@^3.6.1:
   version "3.6.1"
   resolved "https://registry.npmjs.org/jquery/-/jquery-3.6.1.tgz"

@@ -55,10 +55,10 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
+  gem 'capybara', '>= 3.40'
+  gem 'selenium-webdriver', '~> 4.35'
   # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
+  # gem 'webdrivers'
   gem 'shoulda-matchers'
   gem 'database_cleaner-active_record'
 end
@@ -72,16 +72,10 @@ gem 'tzinfo-data', platforms: [ :windows, :jruby]
 
 #for recaptcha
 gem "recaptcha"
-
 gem 'devise'
-
 gem 'devise-bootstrap-views', '~> 1.0'
-
 gem 'devise-two-factor'
-
 gem 'rqrcode'
-
 gem 'simple_form'
-
 gem 'jsbundling-rails'
 gem "image_processing", "~> 1.13"

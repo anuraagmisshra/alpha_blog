@@ -71,7 +71,7 @@ class CategoriesTest < ApplicationSystemTestCase
       fill_in 'Category name', with: 'Updated Cat'
       click_on 'Update Category'
 
-      assert_flash 'Category updated successfully'
+      assert_text 'Category updated successfully'
     else
       # Skip this test if no categories exist
       skip 'No categories available for editing'
