@@ -35,7 +35,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.5.0preview1
+          ruby-version: 3.5.0-preview1
           bundler-cache: false  # Disable cache to avoid stale gems
 
       - name: Install gems fresh
@@ -124,7 +124,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.5.0preview1
+          ruby-version: 3.5.0-preview1
           bundler-cache: true
 
       - name: Run Brakeman security scan
